@@ -1,0 +1,15 @@
+connect:
+    host1:
+      ip: 1.1.1.1
+      uid: user1
+      group: groupa
+      alias: alias1
+      domain: local
+      location: down the hall on a shelf
+    host2:
+      ip: 2.2.2.2
+      uid: user2
+      group: groupb
+      alias: alias2
+      domain: local
+      location: under the desk

@@ -1,0 +1,58 @@
+# ~/.dotfiles/bash/bashrc
+
+umask 022
+
+# man lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+export PAGER="less"
+
+# Set $debian_chroot if empty.
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+  debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[1;33m\]\u@\h>\[\033[00m\] '
+#PS1='${debian_chroot:+($debian_chroot)}\u@\h> '
+PS4='+ $LINE0: '
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+export DOT=~/.dotfiles
+export XDG_CONFIG_HOME=$DOT
+export DOT_ALIAS=$DOT/bash/alias
+export DOT_BASHRC=$DOT/bash/bashrc
+export DOT_FUNCTIONS=$DOT/bash/functions
+export DOT_GIT=$HOME/.gitrc
+export DOT_HISTORY=$DOT/bash/history
+export DOT_OPTIONS=$DOT/bash/options
+export DOT_RC=$DOT/rc.d
+
+. $DOT_ALIAS
+. $DOT_FUNCTIONS
+. $DOT_GIT
+. $DOT_HISTORY
+. $DOT_OPTIONS
+
+for file in $(ls $DOT_RC); do . $DOT_RC/$file; done
+
+export BASH_LIB=$HOME/lib/bash
+export PERL5LIB=/usr/local/lib/perl5
+echo $PATH | grep $HOME/bin >/dev/null
+(( $? == 0)) || export PATH=$HOME/bin:$PATH
+export CONNECT_CONFIG=$DOT/etc/connect.yaml
+
+# Colorized man pages.  See https://www.gnu.org/software/termutils/manual/termcap-1.3/html_mono/termcap.html
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+

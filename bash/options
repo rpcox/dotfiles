@@ -1,0 +1,9 @@
+# ~/.dotfiles/bash/options
+
+shopt -s checkwinsize  # check window size and adjust if necessary
+
+#set -o ignoreeof      # disallow ^D for logout
+#set -o noclobber      # disallow output redirection to overwrite a file
+#set -o noglob         # disallow globbing with * and ?
+#set -o vi             # set vi cmd line editing
+#set -o xtrace         # turn on bash debugging

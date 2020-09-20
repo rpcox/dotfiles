@@ -1,0 +1,19 @@
+# Number of commands to keep in the command history
+HISTSIZE=1000
+# Maximum lines in the history file
+HISTFILESIZE=10000
+# Put a time entry on all history entries
+HISTTIMEFORMAT='%F %T | '
+
+# Specify your pattern to ignore in history
+# ignore all
+#HISTIGNORE=*
+# control what you save in history
+#HISTCONTROL=ignorespace:ignoredups
+# short hand for above
+#HISTCONTROL=ignoreboth
+
+# append to the history file, no overwrites
+shopt -s histappend
+
+

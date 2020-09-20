@@ -1,0 +1,93 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias egrep='egrep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias grep='grep --color=auto'
+    alias ls='ls --color=auto'
+fi
+
+# apt
+alias apts='apt-cache search'
+alias aptshow='apt-cache show'
+alias aptinst='sudo apt-get install -V'
+alias aptupd='sudo apt-get update'
+alias aptupg='sudo apt-get dist-upgrade -V && sudo apt-get autoremove'
+alias aptuua='sudo apt-get update && sudo apt-get dist-upgrade -V && sudo apt-get autoremove'
+alias aptrm='sudo apt-get remove'
+alias aptpurge='sudo apt-get remove --purge'
+alias chkup='/usr/lib/update-notifier/apt-check -p --human-readable'
+alias chkboot='cat /var/run/reboot-required'
+alias dpi='sudo dpkg --install'
+alias dpl='dpkg --listfiles'
+
+# curl
+alias cl='curl -L'
+alias clb='curl -L -I'                  # follow redirects, fetch banner
+alias clo='curl -L -O'                  # follow redirects, download as original name
+alias cloc='curl -L -C - -O'            # follow redirects, download as original name, continue
+alias clocr='curl -L -C - -O --retry 5' # follow redirects, download as original name, continue, retry 5 times
+alias clhead='curl -D - -so /dev/null'  # see only response headers from a get request
+
+# git
+alias ga='git add'
+alias gaa='git add --all'
+alias gac='git add . && git commit -am'
+alias gc='git commit'
+alias gcv='git commit --no-verify'
+alias glp="git log -p -1"
+alias glg="git log --color --graph --pretty=format:'%C(#dc322f)%h%C(#b58900)%d %C(#eee8d5)%s %C(#dc322f)| %C(#586f75)%cr %C(#dc322f)| %C(#586e75)%an%Creset' --abbrev-commit"
+alias gp='git push'
+
+# history
+alias h='history'
+alias hoff='set +o history'
+alias hon='set -o history'
+
+# editing
+alias vi='vim'
+alias svi='sudo vim'
+
+alias l='ls -CF'
+alias la='ls -A'
+alias lc='ls -lcr'       # sort by change time
+alias lk='ls -lSr'       # sort by size
+alias ll='ls -al | less' # pipe through less
+alias lr='ls -lR'        # recursive
+alias lt='ls -ltr'       # sort by date
+alias lu='ls -lur'       # sort by access time
+
+# file preservation
+alias rm='rm -i'
+alias rmf='rm -f'
+alias rmrf='rm -rf'
+alias cp='cp -i'
+alias cpf='cp -f'
+alias mv='mv -i'
+alias mvf='mv -f'
+
+# hashing
+alias md5='openssl md5'
+alias sha1='openssl sha1'
+alias sha256='openssl sha256'
+alias sha512='openssl sha412'
+
+# net
+alias tcp='netstat -tlanp'
+alias udp='netstat -ulanp'
+#alias myip="curl http://ipecho.net/plain; echo"
+alias myip="curl https://ipinfo.io/; echo"
+
+# location
+alias doc='cd ~/Documents; pwd'
+alias down='cd ~/Downloads; pwd'
+alias logs='cd /var/log; pwd'
+alias prj='cd ~/project; pwd'
+
+#misc
+alias j='jobs -l'
+alias md='mkdir -p'
+alias rd='rmdir'
+
