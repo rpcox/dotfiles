@@ -30,9 +30,13 @@ function mod {
      current_file=$DOT_HISTORY
      ;;
 
+    options)
+     current_file=$DOT_OPTIONS
+     ;;
+
     *)
      echo "option '$1' is not supported"
-     echo "usage: mod alias|bashrc|functions|history"
+     echo "usage: mod alias|bashrc|functions|history|options"
      return
      ;;
 
