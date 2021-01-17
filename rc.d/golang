@@ -1,0 +1,2 @@
+# golang rc
+export PATH=$PATH:/usr/local/go/bin

@@ -1,0 +1,3 @@
+# perl
+
+export PERL5LIB=/usr/local/lib/perl5
