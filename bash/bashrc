@@ -45,6 +45,7 @@ export BASH_LIB=$HOME/lib/bash
 export PERL5LIB=/usr/local/lib/perl5
 echo $PATH | grep $HOME/bin >/dev/null
 (( $? == 0)) || export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 export CONNECT_CONFIG=$DOT/etc/connect.yaml
 
 # Colorized man pages.  See https://www.gnu.org/software/termutils/manual/termcap-1.3/html_mono/termcap.html
