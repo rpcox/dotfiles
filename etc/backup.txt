@@ -1,0 +1,9 @@
+.dotfiles
+.config
+.thunderbird
+bin
+Documents
+Downloads
+Music
+Pictures
+project
