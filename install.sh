@@ -1,21 +1,22 @@
+repo_dir=$(pwd)
 stamp=$(date +'%Y%m%d-%H%M%S')
-dot_bu=.dotfiles.orig
+dot_bu=$HOME/.backup/dotfiles-${stamp}
 cd $HOME
 
 [ -e $dot_bu ] || mkdir -p $dot_bu
-[ -e .bash_login ]   && mv .bash_login   $dot_bu/${stamp}-bash_login
-[ -e .bash_logout ]  && mv .bash_logout  $dot_bu/${stamp}-bash_logout
-[ -e .bash_profile ] && mv .bash_profile $dot_bu/${stamp}-bash_profile
-[ -e .bashrc ]       && mv .bashrc       $dot_bu/${stamp}-bashrc
 
-cp .dotfiles/bashrc_new .bashrc
-# Stop bash from looking for and reading .profile
-touch .bash_profile
-touch .bash_login
+[ -e .bash_login ]   && mv .bash_login   $dot_bu/
+[ -e .bash_logout ]  && mv .bash_logout  $dot_bu/
+[ -e .bash_profile ] && mv .bash_profile $dot_bu/
+[ -e .bashrc ]       && mv .bashrc       $dot_bu/
+[ -e .vimrc ]        && mv -f .vimrc     $dot_bu/
+[ -L .vim ]          && mv .vim          $dot_bu/
 
-# .vimintro is volatile and local.  Ignore it
-[ -L .vim ]   && rm -f .vim   || mv .vim     $dot_bu/${stamp}-vim
-[ -e .vimrc ] && rm -f .vimrc || mv .viminfo $dot_bu/${stamp}-vimrc
-
+mv $repo_dir $HOME/.dotfiles
 ln -s $HOME/.dotfiles/.vimrc .vimrc
 ln -s $HOME/.dotfiles/.vim .vim
+
+cd $HOME/.dotfiles
+cp bash_profile_new .bash_profile
+cp bashrc_new .bashrc
+cp bash_logout_new .bash_logout

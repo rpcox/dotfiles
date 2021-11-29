@@ -46,3 +46,8 @@ echo $PATH | grep $HOME/bin >/dev/null
 (( $? == 0)) || export PATH=$HOME/bin:$PATH
 export CONNECT_CONFIG=$DOT/etc/connect.yaml
 
+if [ -z $SSH_AGENT_PID ]; then
+  eval $(ssh-agent)
+  /usr/bin/ssh-add
+fi
+
