@@ -17,6 +17,6 @@ ln -s $HOME/.dotfiles/.vimrc .vimrc
 ln -s $HOME/.dotfiles/.vim .vim
 
 cd $HOME/.dotfiles
-cp bash_profile_new .bash_profile
-cp bashrc_new .bashrc
-cp bash_logout_new .bash_logout
+cp bash_profile_new $HOME/.bash_profile
+cp bashrc_new $HOME/.bashrc
+cp bash_logout_new $HOME/.bash_logout
