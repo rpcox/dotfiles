@@ -1,9 +1,11 @@
 .dotfiles
 .config
+.ssh
 .thunderbird
 bin
+clone
+code
 Documents
 Downloads
 Music
 Pictures
-project
