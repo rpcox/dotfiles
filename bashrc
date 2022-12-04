@@ -6,4 +6,13 @@ case $- in
       *) return;;
 esac
 
-. ~/.dotfiles/bash/bashrc
+DOT_FILES=$HOME/.dotfiles/bash/startup
+
+for f in $(ls $DOT_FILES); do
+	if ! [[  $f =~ "off" ]]; then
+		. $DOT_FILES/$f
+	fi
+done
+
+unset f
+
