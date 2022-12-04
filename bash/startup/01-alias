@@ -1,27 +1,24 @@
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-    alias egrep='egrep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias grep='grep --color=auto'
-    alias ls='ls --color=auto'
-fi
+# .dotfiles/bash/01-alias
 
-# apt
-alias apts='apt-cache search'
-alias aptshow='apt-cache show'
-alias aptinst='sudo apt-get install -V'
-alias aptupd='sudo apt-get update'
-alias aptupg='sudo apt-get dist-upgrade -V && sudo apt-get autoremove'
-alias aptupgd='sudo apt-get update && sudo apt-get dist-upgrade -V && sudo apt-get autoremove'
-alias aptrm='sudo apt-get remove'
-alias aptpurge='sudo apt-get remove --purge'
-alias chkup='/usr/lib/update-notifier/apt-check -p --human-readable'
-alias chkboot='cat /var/run/reboot-required'
-alias dpi='sudo dpkg --install'
-alias pkgfiles='dpkg --listfiles'
+# file preservation
+alias rm='rm -i'
+alias rmf='rm -f'
+alias rmrf='rm -rf'
+alias cp='cp -i'
+alias cpf='cp -f'
+alias mv='mv -i'
+alias mvf='mv -f'
+
+# ls
+alias ls='ls --color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias lc='ls -lcr'       # sort by change time
+alias lk='ls -lSr'       # sort by size
+alias lu='ls -lur'       # sort by access time
+alias lt='ls -ltr'       # sort by date
+alias lr='ls -lR'        # recursive
+alias ll='ls -al | less' # pipe through less
 
 # curl
 alias cl='curl -L'
@@ -30,6 +27,15 @@ alias cloc='curl -L -C - -O'            # follow redirects, download as original
 alias clocr='curl -L -C - -O --retry 5' # follow redirects, download as original name, continue, retry 5 times
 alias clb='curl -L -I'                  # follow redirects, fetch banner
 alias clhead='curl -D - -so /dev/null'  # see only response headers from a get request
+alias DELETE='curl -X DELETE'
+alias GET='curl'
+alias HEAD='curl --head'
+alias OPTIONS='curl -v -X OPTIONS'
+alias TRACE='curl --trace trace_dump'
+
+# date
+alias day='date +j'
+alias week='date +V'
 
 # git
 alias ga='git add'
@@ -41,53 +47,43 @@ alias glp="git log -p -1"
 alias glg="git log --color --graph --pretty=format:'%C(#dc322f)%h%C(#b58900)%d %C(#eee8d5)%s %C(#dc322f)| %C(#586f75)%cr %C(#dc322f)| %C(#586e75)%an%Creset' --abbrev-commit"
 alias gp='git push'
 
-# history
-alias h='history'
-alias hoff='set +o history'
-alias hon='set -o history'
-
-# editing
-alias vi='vim'
-alias svi='sudo vim'
-
-alias l='ls -CF'
-alias la='ls -A'
-alias lc='ls -lcr'       # sort by change time
-alias lk='ls -lSr'       # sort by size
-alias lu='ls -lur'       # sort by access time
-alias lt='ls -ltr'       # sort by date
-alias lr='ls -lR'        # recursive
-alias ll='ls -al | less' # pipe through less
-
-# code preservation
-alias rm='rm -i'
-alias rmf='rm -f'
-alias rmrf='rm -rf'
-alias cp='cp -i'
-alias cpf='cp -f'
-alias mv='mv -i'
-alias mvf='mv -f'
+# colorize grep output
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # hashing
 alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
-alias sha512='openssl sha412'
+alias sha512='openssl sha512'
 
-# net
-alias tcp='netstat -tlanp'
-alias udp='netstat -ulanp'
-#alias myip="curl http://ipecho.net/plain; echo"
-alias myip="curl https://ipinfo.io/; echo"
+# history
+alias h='history'
+alias hoff='set +o history'  # turn history off
+alias hon='set -o history'   # turn history on
 
 # location
 alias doc='cd ~/Documents; pwd'
 alias down='cd ~/Downloads; pwd'
 alias logs='cd /var/log; pwd'
-alias prj='cd ~/project; pwd'
+#alias prj='cd ~/project; pwd'
 
 #misc
 alias j='jobs -l'
 alias md='mkdir -p'
 alias rd='rmdir'
+alias path="echo $PATH | tr ':' '\n' | sort"
+if [[ $OS =~ "Darwin" ]]; then
+  alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+fi
+
+# net - with a Mac, use "lsof -i protocol:port" to find a program on port
+if [[ $OS =~ "Linux" ]]; then
+  alias tcp='netstat -tlnp'
+  alias udp='netstat -ulnp'
+fi
+
+#alias myip="curl http://ipecho.net/plain; echo"
+alias myip="curl https://ipinfo.io/; echo"
 

@@ -1,19 +1,17 @@
+# .dotfiles/bash/01-history
+
 # Number of commands to keep in the command history
-HISTSIZE=1000
+export HISTSIZE=1000
 # Maximum lines in the history file
-HISTFILESIZE=10000
+export HISTFILESIZE=10000
 # Put a time entry on all history entries
-HISTTIMEFORMAT='%F %T | '
+export HISTTIMEFORMAT='%F %T | '
 
 # Specify your pattern to ignore in history
 # ignore all
-#HISTIGNORE=*
+#export HISTIGNORE=*
 # control what you save in history
-#HISTCONTROL=ignorespace:ignoredups
+#export HISTCONTROL=ignorespace:ignoredups
 # short hand for above
-#HISTCONTROL=ignoreboth
-
-# append to the history file, no overwrites
-shopt -s histappend
-
+#export HISTCONTROL=ignoreboth
 

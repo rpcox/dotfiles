@@ -1,9 +1,36 @@
-# ~/.dotfiles/bash/options
+# ~/.dotfiles/bash/01-options
+# https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+#
+# set [-abefhkmnptuvxBCEHPT] [-o option-name] [--] [-] [argument …]   # turn option on
+# set [+abefhkmnptuvxBCEHPT] [+o option-name] [--] [-] [argument …]   # turn option off
+#
+# To see what is currently set -> echo $-  OR  set -o  OR  echo $SHELLOPTS
 
-shopt -s checkwinsize  # check window size and adjust if necessary
-
-#set -o ignoreeof      # disallow ^D for logout
-#set -o noclobber      # disallow output redirection to overwrite a file
-#set -o noglob         # disallow globbing with * and ?
-#set -o vi             # set vi cmd line editing
-#set -o xtrace         # turn on bash debugging
+#set -o allexport      # Same as 'set -a'.  Export each variable or function that is created or modified.
+set -o braceexpand    # Same as 'set -B'.  Turn on brace expansion.
+#set -o emacs          # Use emacs-style line editing
+#set -o errexit        # Same as 'set -e'.  Exit if a cmd in a pipeline returns non-zero status.
+#set -o errtrace       # Same as 'set -E'.  Shell inherits trap on ERR
+#set -o functrace      # Same as 'set -T'.  Traps on DEBUG and RETURN are inherited
+set -o hashall        # Same as 'set -h'.  Locate and remember commands as looked up for execution.
+set -o histexpand     # Same as 'set -H'.  Enable '!' history substitution
+#set -o history        # On by default.  Enable command history.
+#set -o ignoreeof      # Disallow ^D for logout
+#set -o keyword        # Same as 'set -k'.  All arguments from assignment statements are placed in the enviornment.
+set -o monitor        # Same as 'set -m'.  All jobs run in a separate process group.  When completed, the shell print exit status.
+#set -o noclobber      # Same as 'set -C'.  Disallow output redirection to overwrite a file
+#set -o noexec         # Same as 'set -n'.  Read commands but do not execute.  Useful for syntax checking.  Ignored with interactive shell.
+#set -o noglob         # Same as 'set -f'.  Disallow globbing with * and ?
+#set -o nolog          # Available, but ignored
+#set -o notify         # Same as 'set -b'.  Report terminated background jobs immediately.
+#set -o nounset        # Same as 'set -u'.  Unset variables and parameters other than special paramaters.
+#set -o onecmd         # Same as 'set -t'.  Exit shell after reading and executing one command.
+#set -o physical       # Same as 'set -P'.  Do not resolve sym links
+#set -o pipefail       # When set, the return value of a pipeline is the value of the rightmost cmd to exit with non-zero status.
+#set -o posix          # Make bash behave in strict posix mode.
+#set -o privileged     # Same as 'set -p'.  Do not process $BASH_ENV and $ENV files, do not inherit shell functions and ignore SHELLOPTS, BASHOPTS, CDPATH and GLOBIGNORE variables.
+#set -o verbose        # Same as 'set -v'.  Print input lines as they are resd.
+#set -o vi             # Use vi cmd line editing.
+#set -o xtrace         # Same as 'set -x'.  Turn on bash debugging.
+#set -r                # Enable restricted shell mode.
+#set --                # Stop procesing options

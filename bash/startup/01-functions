@@ -1,60 +1,16 @@
-# ~/.dotfiles/bash/functions
+# .dotfiles/bash/01-functions
 
-# ---------------------------------------------------
-# modify a particular environment file and immediately source it
-#
-function mod {
-
-  if [ -z $1 ]; then
-   echo "usage: mod alias|bashrc|functions|history"
-   return
-  fi
-
-  current_file=''
-
-  case $1 in
-
-    alias)
-     current_file=$DOT_ALIAS
-     ;;
-
-    bashrc)
-     current_file=$DOT_BASHRC
-     ;;
-
-    functions)
-     current_file=$DOT_FUNCTIONS
-     ;;
-
-    history)
-     current_file=$DOT_HISTORY
-     ;;
-
-    options)
-     current_file=$DOT_OPTIONS
-     ;;
-
-    *)
-     echo "option '$1' is not supported"
-     echo "usage: mod alias|bashrc|functions|history|options"
-     return
-     ;;
-
-  esac
-
-  vim $current_file
-  echo -n "source this file?  [y/N] "
-  read response
-
-  case $response in
-
-    y|Y)
-      . $current_file
-      ;;
-
-      *)
-      ;;
-
-  esac
+# usage: gz-test FILE
+function gz-test() {
+	local orig=$(wc -c < "$1")
+	local gzip=$(gzip -c "$1" | wc -c)
+	local ratio=$(echo "$gzip * 100 / $orig" | bc -l);
+	printf "  orig size: %d bytes\n" $orig
+	printf "  gzip size: %d\n" $gzip
+	printf "compression: %2.2f%%\n" $ratio
 }
 
+# used for PS1 prompt
+function parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
