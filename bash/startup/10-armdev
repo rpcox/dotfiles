@@ -1,0 +1,4 @@
+# armdev - arm cross compile
+
+echo $PATH | grep gcc-arm >/dev/null
+(( $? == 0)) || export PATH=/opt/gcc-arm/bin:$PATH

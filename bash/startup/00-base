@@ -1,0 +1,41 @@
+# .dotfiles/bash/00-base
+
+# Stop tellimg me bash is dead
+OS=$(uname -s)
+
+if [[ $OS =~ "Darwin" ]]; then
+	export BASH_SILENCE_DEPRECATION_WARNING=1
+fi
+
+
+# ANSI colors
+BLACK="30"
+RED="31"
+GREEN="32"
+YELLOW="33"
+BLUE="34"
+MAGENTA="35"
+CYAN="36"
+LT_GRAY="37"
+GRAY="90"
+LT_RED="91"
+LT_GREEN="92"
+LT_YELLOW="93"
+LT_BLUE="94"
+LT_MAGENTA="95"
+LT_CYAN="96"
+WHITE="97"
+
+# ANSI types
+RESET=0
+BOLD=1
+FAINT=2
+ITALIC=3
+ULINE=4  # Underlined text
+
+# Set up the prompt
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
+export PS1="\u \[\033[32m\]\w\[\033[${YELLOW}m\$(parse_git_branch)\[\033[00m\] > "

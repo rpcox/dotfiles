@@ -1,0 +1,7 @@
+# .dotfiles/bash/ssh
+
+if [[ -z $SSH_AGENT_PID && $SHLVL -le 1 ]]; then
+	eval $(ssh-agent)
+	/usr/bin/ssh-add
+fi
+
