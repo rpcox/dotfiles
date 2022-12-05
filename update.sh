@@ -1,22 +1,32 @@
-repo_dir=$(pwd)
-stamp=$(date +'%Y%m%d-%H%M%S')
-dot_bu=$HOME/.backup/dotfiles-${stamp}
-cd $HOME
+#!/bin/bash
 
-[ -e $dot_bu ] || mkdir -p $dot_bu
+git config --get remote.origin.url | grep dotfiles >/dev/null
+retval=$?
 
-[ -e .bash_login ]   && mv .bash_login   $dot_bu/
-[ -e .bash_logout ]  && mv .bash_logout  $dot_bu/
-[ -e .bash_profile ] && mv .bash_profile $dot_bu/
-[ -e .bashrc ]       && mv .bashrc       $dot_bu/
-[ -e .vimrc ]        && mv -f .vimrc     $dot_bu/
-[ -L .vim ]          && mv .vim          $dot_bu/
+if (( $retval == 0 )); then
+	repo_dir=$(pwd)
+	stamp=$(date +'%Y%m%d-%H%M%S')
+	dot_backup=$HOME/.backup/dotfiles-${stamp}
 
-mv $repo_dir $HOME/.dotfiles
-ln -s $HOME/.dotfiles/.vimrc .vimrc
-ln -s $HOME/.dotfiles/.vim .vim
+	cd $HOME
+	[ -e $dot_backup ] || mkdir -p $dot_backup
 
-cd $HOME/.dotfiles
-cp bash_profile_new $HOME/.bash_profile
-cp bashrc_new $HOME/.bashrc
-cp bash_logout_new $HOME/.bash_logout
+	[ -e .bash_login ]   && mv .bash_login   $dot_backup/
+	[ -e .bash_logout ]  && mv .bash_logout  $dot_backup/
+	[ -e .bash_profile ] && mv .bash_profile $dot_backup/
+	[ -e .bashrc ]       && mv .bashrc       $dot_backup/
+
+	ln -s $repo_dir/bash/bashrc .bashrc
+	ln -s $repo_dir/bash/bash_profile .bash_profile
+	ln -s $repo_dir/bash/bash_logout .bash_logout
+
+	[ -e .vimrc ]        && mv .vimrc     $dot_backup/
+	ln -s $repo_dir/vim/vimrc .vimrc
+
+	[ -d .vim/syntax ] || mkdir -p .vim/syntax
+	cp $repo_dir/vim/syntax/*vim .vim/syntax
+	[ -d .cache/vim ] || mkdir -p .cache/vim
+else
+	echo "you are in the wrong repo. cd into the dotfiles repo"
+fi
+
