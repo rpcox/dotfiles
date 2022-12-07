@@ -5,6 +5,10 @@ retval=$?
 
 if (( $retval == 0 )); then
 	repo_dir=$(pwd)
+	sed_repo_dir=$(pwd | sed 's/\//\\\//g')
+	sed -i '.bak' "s/^DOT_FILES.*/DOT_FILES=${sed_repo_dir}\/bash\/startup/"  ${repo_dir}/bash/bashrc
+	rm -f ${repo_dir}/bash/bashrc.bak
+
 	stamp=$(date +'%Y%m%d-%H%M%S')
 	dot_backup=$HOME/.backup/dotfiles-${stamp}
 
