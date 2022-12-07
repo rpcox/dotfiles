@@ -10,7 +10,3 @@ function gz-test() {
 	printf "compression: %2.2f%%\n" $ratio
 }
 
-# used for PS1 prompt
-function parse_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
-}
