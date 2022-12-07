@@ -33,9 +33,48 @@ FAINT=2
 ITALIC=3
 ULINE=4  # Underlined text
 
-# Set up the prompt
-function parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+function __git_branch() {
+#	git branch --show-current 2>/dev/null
+       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
 }
 
-export PS1="\u \[\033[32m\]\w\[\033[${YELLOW}m\$(parse_git_branch)\[\033[00m\] > "
+function __set_prompt() {
+
+	local RED="\033[0;31m"
+	local GREEN="\033[0;32m"
+	local NOCOLOR="\033[0m"
+	local YELLOW="\033[0;33m"
+	local BLACK="\033[0;30m"
+
+	local __git_status_color=${GREEN}
+
+	local __status=$(git status 2>/dev/null | grep 'Your branch is ahead' 2>/dev/null)
+	if [ "$__status" != "" ]; then
+		__git_status_color=${YELLOW}
+	fi
+
+	local __status=$(git status --porcelain 2>/dev/null)
+	if [ "$__status" != "" ]; then
+		__git_status_color=${RED}
+	fi
+
+	# interactive prompt
+	PS1="\u \[\033[32m\]\w$__git_status_color\[$(__git_branch)\]\[\033[00m\] > "
+}
+
+
+# continuation prompt
+#export PS2="> "                                   # bash default
+
+# select prompt
+#export PS3="#? "                                  # bash default
+#export PS3="y/n "
+
+# debug prompt (when using 'set -x')
+#export PS4="+ "                                   # bash default
+#export PS4="$0 - $LINE + "
+
+# command to run before PS1 is displayed
+export PROMPT_COMMAND=__set_prompt                 # bash default
+#export PROMPT_COMMAND="echo [$(date +%T)]"         # above prompt
+#export PROMPT_COMMAND="echo -n [$(date +%T)]"      # same line as prompt
