@@ -78,3 +78,7 @@ function __set_prompt() {
 export PROMPT_COMMAND=__set_prompt                 # bash default
 #export PROMPT_COMMAND="echo [$(date +%T)]"         # above prompt
 #export PROMPT_COMMAND="echo -n [$(date +%T)]"      # same line as prompt
+
+## PATH
+PATH=$HOME/bin:$PATH
+
