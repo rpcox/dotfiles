@@ -1,3 +1,4 @@
 # .dotfiles/bash/go
 
 export GOPATH=$HOME/code/go
+PATH=$GOPATH/bin:$PATH
