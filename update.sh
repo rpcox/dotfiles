@@ -6,8 +6,13 @@ retval=$?
 if (( $retval == 0 )); then
 	repo_dir=$(pwd)
 	sed_repo_dir=$(pwd | sed 's/\//\\\//g')
-	sed -i '.bak' "s/^DOT_FILES.*/DOT_FILES=${sed_repo_dir}\/bash\/startup/"  ${repo_dir}/bash/bashrc
-	rm -f ${repo_dir}/bash/bashrc.bak
+
+	if [[ $OS =~ Darwin ]]; then
+		sed -i '.bak' "s/^DOT_FILES.*/DOT_FILES=${sed_repo_dir}\/bash\/startup/"  ${repo_dir}/bash/bashrc
+		rm -f ${repo_dir}/bash/bashrc.bak
+	elif [[ $OS =~ Linux ]]; then
+		sed -i "s/^DOT_FILES.*/DOT_FILES=${sed_repo_dir}\/bash\/startup/"  ${repo_dir}/bash/bashrc
+	fi
 
 	stamp=$(date +'%Y%m%d-%H%M%S')
 	dot_backup=$HOME/.backup/dotfiles-${stamp}
@@ -34,3 +39,4 @@ else
 	echo "you are in the wrong repo. cd into the dotfiles repo"
 fi
 
+unset repo_dir sed_repo_dir stamp dot_backup
