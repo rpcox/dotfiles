@@ -1,0 +1,44 @@
+# .dotfiles/bash/00-prompt
+
+
+function __git_branch() {
+#	git branch --show-current 2>/dev/null
+       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
+
+function __set_prompt() {
+
+	local __git_status_color=${FG_GRN}
+
+	local __status=$(/usr/bin/git status 2>/dev/null | /usr/bin/grep '^Your branch is ahead' 2>/dev/null)
+	if [[ -n $__status ]]; then
+		__git_status_color=${FG_YEL}
+	fi
+
+	local __status=$(git status --porcelain 2>/dev/null)
+	if [[ -n $__status ]]; then
+		__git_status_color=${FG_RED}
+	fi
+
+	# interactive prompt
+	PS1="${FG_CYN}\u@$HOST ${FG_YEL}\w$__git_status_color\[$(__git_branch)\]${RST} > "
+}
+
+
+# continuation prompt
+#export PS2="> "                                   # bash default
+
+# select prompt
+#export PS3="#? "                                  # bash default
+#export PS3="y/n "
+
+# debug prompt (when using 'set -x')
+#export PS4="+ "                                   # bash default
+#export PS4="$0 - $LINE + "
+
+# command to run before PS1 is displayed
+#export PROMPT_COMMAND=                            # bash default
+export PROMPT_COMMAND=__set_prompt                 # use above prompt
+#export PROMPT_COMMAND="echo [$(date +%T)]"        # track time of day
+

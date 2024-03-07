@@ -1,0 +1,14 @@
+# .dotfiles/startup/00-arch
+
+OS=$(uname -s)
+
+if [[ $OS =~ "Darwin" ]]; then
+	# Stop tellimg me bash is dead
+        export BASH_SILENCE_DEPRECATION_WARNING=1
+	HOST="macbook"
+elif [[ $OS =~ Linux ]]; then
+	HOST="\h"
+fi
+
+# don't unset
+#unset OS

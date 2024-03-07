@@ -1,0 +1,30 @@
+# .dotfiles/bash/00-color
+#
+# display attributes
+RST='\[\033[0m\]'     # reset all attributes
+BRT='\[\033[1m\]'     # bright
+DIM='\[\033[2m\]'     # dim
+UND='\[\033[4m\]'     # underscore
+BLK='\[\033[5m\]'     # blink
+REV='\[\033[7m\]'     # reverse
+HID='\[\033[8m\]'     # hidden
+
+# foreground colors
+FG_BLK='\[\033[30m\]' # black
+FG_RED='\[\033[31m\]' # red
+FG_GRN='\[\033[32m\]' # green
+FG_YEL='\[\033[33m\]' # yellow
+FG_BLU='\[\033[34m\]' # blue
+FG_MAG='\[\033[35m\]' # magenta
+FG_CYN='\[\033[36m\]' # cyan
+FG_WHT='\[\033[37m\]' # white
+
+# background colors
+BG_BLK='\[\033[30m\]' # black
+BG_RED='\[\033[31m\]' # red
+BG_GRN='\[\033[32m\]' # green
+BG_YEL='\[\033[33m\]' # yellow
+BG_BLU='\[\033[34m\]' # blue
+BG_MAG='\[\033[35m\]' # magenta
+BG_CYN='\[\033[36m\]' # cyan
+BG_WHT='\[\033[37m\]' # white
