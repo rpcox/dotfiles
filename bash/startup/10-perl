@@ -1,3 +1,5 @@
 # perl
 
-export PERL5LIB=/usr/local/lib/perl5
+if [ -e /usr/local/lib/perl5 ]; then
+	export PERL5LIB=/usr/local/lib/perl5
+fi
