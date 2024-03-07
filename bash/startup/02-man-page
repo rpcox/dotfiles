@@ -1,12 +1,13 @@
 # .dotfiles/bash/man-page
 
-export LESS_TERMCAP_mb=$'\e[1;32m'   # blinking; bold RED
-export LESS_TERMCAP_md=$'\e[1;32m'   # double bright; bold GREEN
+export LESS_TERMCAP_mb=$'\e[1;33m'   # blinking; bold YELLOW
+export LESS_TERMCAP_md=$'\e[1;36m'   # double bright; bold CYAN
 export LESS_TERMCAP_me=$'\e[0m'      # turn off all modes
 export LESS_TERMCAP_se=$'\e[0m'      # end standout mode
 export LESS_TERMCAP_so=$'\e[01;33m'  # start standout mode; YELLOW
 export LESS_TERMCAP_ue=$'\e[0m'      # underline end
-export LESS_TERMCAP_us=$'\e[1;4;91m' # underline start; bold underline LT RED 
+export LESS_TERMCAP_us=$'\e[0;3;93m' # underline no; dim; YELLOW
+#export LESS_TERMCAP_us=$'\e[1;4;93m' # underline start; bold underline LT RED
 
 export MANPAGER='less'         # Stop man, bring my console back
 #export MANPAGER='less -X'     # Leave place in man page up
