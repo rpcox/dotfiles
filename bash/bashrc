@@ -6,7 +6,7 @@ case $- in
       *) return;;
 esac
 
-DOT_FILES=DOT_FILE_LOCATION
+DOT_FILES=/Users/ric/code/go/src/github.com/rpcox/dotfiles/bash/startup
 
 for f in $(ls $DOT_FILES); do
 	if [[ ! -d $DOT_FILES/$f && ! $DOT_FILES/$f =~ "off" ]]; then
